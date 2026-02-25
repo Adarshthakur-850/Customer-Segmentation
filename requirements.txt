@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 pandas
 numpy
 matplotlib
@@ -6,3 +7,13 @@ scikit-learn
 plotly
 openpyxl
 requests
+=======
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+plotly
+openpyxl
+requests
+>>>>>>> c2cafea4a0b4bee765cbeb05d2d36a7327a604bb
