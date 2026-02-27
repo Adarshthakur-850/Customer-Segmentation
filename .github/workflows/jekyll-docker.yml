@@ -2,10 +2,10 @@ name: Python CI
 
 on:
   push:
-    branches:
+    branches: 
       - main
   pull_request:
-    branches:
+    branches: 
       - main
 
 jobs:
@@ -24,25 +24,13 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-
-      - name: Display Python Version
-        run: python --version
+          cache: "pip"
 
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
-            echo "requirements.txt not found"
-            exit 1
-          fi
+          pip install -r requirements.txt
 
       - name: Run Clustering Script
         run: |
-          if [ -f src/clustering.py ]; then
-            python src/clustering.py
-          else
-            echo "clustering.py not found in src/"
-            exit 1
-          fi
+          python src/clustering.py
