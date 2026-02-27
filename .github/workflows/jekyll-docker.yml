@@ -2,9 +2,11 @@ name: Customer Segmentation CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   build:
@@ -12,23 +14,38 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [ "3.10" ]
+        python-version: ["3.10"]
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: pip
+          cache: "pip"
+
+      - name: Verify Python Version
+        run: python --version
 
       - name: Upgrade pip
         run: python -m pip install --upgrade pip
 
       - name: Install Dependencies
-        run: pip install --no-cache-dir -r requirements.txt
+        run: |
+          if [ -f requirements.txt ]; then
+            pip install -r requirements.txt
+          else
+            echo "requirements.txt not found"
+            exit 1
+          fi
 
       - name: Run Clustering Script
-        run: python src/clustering.py
+        run: |
+          if [ -f src/clustering.py ]; then
+            python src/clustering.py
+          else
+            echo "clustering.py not found"
+            exit 1
+          fi
