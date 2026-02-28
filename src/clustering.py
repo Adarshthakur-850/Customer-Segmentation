@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.metrics import silhouette_score
