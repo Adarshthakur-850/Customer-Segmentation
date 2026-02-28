@@ -20,11 +20,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
+      - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-          cache: "pip"
+          cache: pip
 
       - name: Verify Python Version
         run: python --version
@@ -34,18 +34,16 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          if [ -f requirements.txt ]; then
-            pip install -r requirements.txt
-          else
+          if [ ! -f requirements.txt ]; then
             echo "requirements.txt not found"
             exit 1
           fi
+          python -m pip install -r requirements.txt
 
       - name: Run Clustering Script
         run: |
-          if [ -f src/clustering.py ]; then
-            python src/clustering.py
-          else
-            echo "clustering.py not found"
+          if [ ! -f src/clustering.py ]; then
+            echo "src/clustering.py not found"
             exit 1
           fi
+          python src/clustering.py
