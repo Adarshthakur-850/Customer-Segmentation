@@ -2,11 +2,9 @@ name: Customer Segmentation CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   build:
@@ -26,7 +24,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: pip
 
-      - name: Verify Python Version
+      - name: Verify Python Installation
         run: python --version
 
       - name: Upgrade pip
@@ -35,7 +33,7 @@ jobs:
       - name: Install Dependencies
         run: |
           if [ ! -f requirements.txt ]; then
-            echo "requirements.txt not found"
+            echo "Error: requirements.txt not found"
             exit 1
           fi
           python -m pip install -r requirements.txt
@@ -43,7 +41,7 @@ jobs:
       - name: Run Clustering Script
         run: |
           if [ ! -f src/clustering.py ]; then
-            echo "src/clustering.py not found"
+            echo "Error: src/clustering.py not found"
             exit 1
           fi
           python src/clustering.py
