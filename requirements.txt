@@ -1,23 +1,8 @@
-<<<<<<< HEAD
 pandas==2.0.3
 numpy==1.24.2
 scikit-learn==1.3.0
 matplotlib==3.7.1
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-plotly
-openpyxl
-requests
-=======
-pandas
-numpy
-matplotlib
-seaborn
-scikit-learn
-plotly
-openpyxl
-requests
->>>>>>> c2cafea4a0b4bee765cbeb05d2d36a7327a604bb
+seaborn==0.12.2
+plotly==5.15.0
+openpyxl==3.1.2
+requests==2.31.0
